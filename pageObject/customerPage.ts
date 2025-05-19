@@ -14,11 +14,11 @@ export class CustomerPage {
   }
 
   async addCustomer(name: string, phone: string, address: string) {
-    await this.page.getByRole('link', { name: 'tambah' }).click();
-    await this.page.getByRole('textbox', { name: 'nama' }).fill(name);
-    await this.page.getByRole('textbox', { name: 'no.hp' }).fill(phone);
-    await this.page.getByRole('textbox', { name: 'alamat' }).fill(address);
-    await this.page.getByRole('button', { name: 'simpan' }).click();
+    await this.page.getByRole("link", { name: "tambah" }).click();
+    await this.page.getByRole("textbox", { name: "nama" }).fill(name);
+    await this.page.getByRole("textbox", { name: "no.hp" }).fill(phone);
+    await this.page.getByRole("textbox", { name: "alamat" }).fill(address);
+    await this.page.getByRole("button", { name: "simpan" }).click();
     await this.page.waitForTimeout(1000);
   }
 }

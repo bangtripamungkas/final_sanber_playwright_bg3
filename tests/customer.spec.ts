@@ -7,7 +7,7 @@ test.describe("Customer Tests", () => {
     await login(page);
   });
 
-  test("should add new customer (positive)", async ({ page }) => {
+  test("Add new customer (positive)", async ({ page }) => {
     const customer = new CustomerPage(page);
     await customer.goto();
     await customer.addCustomer("Reni Test", "085612412233", "Jalan Bantul");
@@ -19,20 +19,18 @@ test.describe("Customer Tests", () => {
     await page.reload();
 
     await page.screenshot({
-      path: "screenshot/screenshotpositive.png",
+      path: "screenshot/screenshotcustomerpositive.png",
       fullPage: true,
     });
   });
 
-  test("should not add customer with empty fields (negative)", async ({
-    page,
-  }) => {
+  test("Cannot add customer with empty fields (negative)", async ({ page }) => {
     const customer = new CustomerPage(page);
     await customer.goto();
     await customer.addCustomer("", "", "");
     await expect(page.getByText('"name" is not allowed to be')).toBeVisible;
     await page.screenshot({
-      path: "screenshot/screenshotnegative.png",
+      path: "screenshot/screenshotcustomernegative.png",
       fullPage: true,
     });
   });
