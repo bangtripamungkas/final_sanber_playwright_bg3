@@ -1,0 +1,26 @@
+{
+  "name": "final_sanber_playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reni137/final_sanber_playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reni137/final_sanber_playwright/issues"
+  },
+  "homepage": "https://github.com/Reni137/final_sanber_playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/dotenv": "^8.2.3",
+    "@types/node": "^22.15.19"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
+}
