@@ -1,29 +1,30 @@
-name: Playwright Tests
+name: Playwright Test CI
 on: [push, workflow_dispatch]
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v4
-      - name: Install NodeJS
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 22
       - name: Check NodeJS version
         run: node -v
       - name: Check NPM version
         run: npm -v
       - name: Install dependencies
-        run: npm ci
-      - name: Install Playwright Browsers
+        run: npm install && npm ci
+      - name: Install Playwright browsers
         run: npx playwright install --with-deps
-      - name: Run Playwright tests
+      - name: Copy .env file
+        run: cp .env.example .env
+      - name: Add required variable to .env file
+        run: |
+          echo "USER_EMAIL = ${{ vars.USER_EMAIL }}" >> .env
+          echo "USER_PASSWORD = ${{ vars.USER_PASSWORD }}" >> .env
+      - name: Check .env file
+        run: cat .env
+      - name: Run tests
         run: npx playwright test
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 21
