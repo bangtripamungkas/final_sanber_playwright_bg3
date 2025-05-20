@@ -18,13 +18,9 @@ jobs:
         run: npm install && npm ci
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
-      - name: Copy .env file
-        run: cp .env.example .env
-      - name: Add required variable to .env file
+      - name: Create .env file
         run: |
-          echo "USER_EMAIL = ${{ vars.USER_EMAIL }}" >> .env
-          echo "USER_PASSWORD = ${{ vars.USER_PASSWORD }}" >> .env
-      - name: Check .env file
-        run: cat .env
+          echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env
+          echo "USER_PASSWORD=${{ secrets.USER_PASSWORD }}" >> .env
       - name: Run tests
         run: npx playwright test
